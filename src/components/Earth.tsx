@@ -1,38 +1,44 @@
 import * as THREE from "three";
 import { Icosahedron } from "@react-three/drei";
-import { useFrame, useLoader } from "@react-three/fiber";
+import { useFrame, useLoader, useThree } from "@react-three/fiber";
 import { useRef } from "react";
 import { TextureLoader } from "three";
+import Moon from "./Moon";
+import { useAtom } from "jotai";
+import { cameraPositionAtom } from "@/store/jotai";
 
-export default function Earth() {
+export default function Earth(ref: any) {
   const earthGroup = useRef<THREE.Group>(null);
   const cloudsRef = useRef(null);
 
   // earth textures
-  const earthMap = useLoader(TextureLoader, "./assets/planets/earthmap1k.jpg");
+  const earthMap = useLoader(
+    TextureLoader,
+    "./assets/planets/Earth/earthmap1k.jpg"
+  );
   const earthSpecMap = useLoader(
     TextureLoader,
-    "./assets/planets/earthspec1k.jpg"
+    "./assets/planets/Earth/earthspec1k.jpg"
   );
   const earthBumpMap = useLoader(
     TextureLoader,
-    "./assets/planets/earthbump1k.jpg"
+    "./assets/planets/Earth/earthbump1k.jpg"
   );
 
   // city lights texture
   const earthLightsTexture = useLoader(
     TextureLoader,
-    "./assets/planets/earthlights1k.jpg"
+    "./assets/planets/Earth/earthlights1k.jpg"
   );
 
   // clouds textures
   const earthCloudTexture = useLoader(
     TextureLoader,
-    "./assets/planets/earthcloudmap.jpg"
+    "./assets/planets/Earth/earthcloudmap.jpg"
   );
   const earthCloudAlphaTexture = useLoader(
     TextureLoader,
-    "./assets/planets/earthcloudmaptrans.jpg"
+    "./assets/planets/Earth/earthcloudmaptrans.jpg"
   );
 
   // glow shader params
@@ -79,16 +85,19 @@ export default function Earth() {
 
   // rotation cycle
   useFrame(({ clock }) => {
-    if (!earthGroup.current || !cloudsRef.current) return;
-    earthGroup.current.rotation.y = clock.getElapsedTime() * 0.1;
+    if (!ref.current || !cloudsRef.current) return;
+    ref.current.rotation.y = clock.getElapsedTime() * 0.1;
     // @ts-ignore
     cloudsRef.current.rotation.y = clock.getElapsedTime() * 0.02;
-    // cloudsRef.current?.rotation.y = clock.getElapsedTime() * 0.11;
   });
 
   return (
-    <group rotation={[0, 0, (-23.4 * Math.PI) / 180]} ref={earthGroup}>
-      <Icosahedron args={[1, 12]}>
+    <group
+      position={[150, 0, 0]}
+      rotation={[0, 0, (-23.4 * Math.PI) / 180]}
+      ref={ref}
+    >
+      <Icosahedron args={[1, 12]} castShadow receiveShadow>
         <meshPhongMaterial
           map={earthMap}
           specularMap={earthSpecMap}
@@ -97,11 +106,7 @@ export default function Earth() {
         />
       </Icosahedron>
       <Icosahedron args={[1, 12]}>
-        <meshBasicMaterial
-          map={earthLightsTexture}
-          blending={2}
-          lightMapIntensity={10}
-        />
+        <meshBasicMaterial map={earthLightsTexture} blending={2} />
       </Icosahedron>
       <Icosahedron args={[1, 12]} scale={1.01} ref={cloudsRef}>
         <meshStandardMaterial
@@ -121,6 +126,7 @@ export default function Earth() {
           blending={2}
         />
       </Icosahedron>
+      <Moon />
     </group>
   );
 }
