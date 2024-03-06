@@ -16,8 +16,7 @@ export default function SolarSystem() {
     <Canvas camera={{ position: [0, 0, 2] }}>
       <OrbitControls minPolarAngle={0.001} maxPolarAngle={Math.PI - 0.001} />
       <Stars count={5000} radius={50} depth={500} fade />
-      {/* <ambientLight intensity={0.5} /> */}
-      <pointLight position={[10, 10, 10]} intensity={100} />
+      <pointLight position={[10, 0.5, 10]} intensity={800} />
       <Environment background files={skyBoxFiles} />
       <Earth />
     </Canvas>
