@@ -6,6 +6,7 @@ import { TextureLoader } from "three";
 
 export default function Earth() {
   const earthGroup = useRef<THREE.Group>(null);
+  const cloudsRef = useRef(null);
 
   // earth textures
   const earthMap = useLoader(TextureLoader, "./assets/planets/earthmap1k.jpg");
@@ -78,8 +79,11 @@ export default function Earth() {
 
   // rotation cycle
   useFrame(({ clock }) => {
-    if (!earthGroup.current) return;
+    if (!earthGroup.current || !cloudsRef.current) return;
     earthGroup.current.rotation.y = clock.getElapsedTime() * 0.1;
+    // @ts-ignore
+    cloudsRef.current.rotation.y = clock.getElapsedTime() * 0.02;
+    // cloudsRef.current?.rotation.y = clock.getElapsedTime() * 0.11;
   });
 
   return (
@@ -99,7 +103,7 @@ export default function Earth() {
           lightMapIntensity={10}
         />
       </Icosahedron>
-      <Icosahedron args={[1, 12]} scale={1.01}>
+      <Icosahedron args={[1, 12]} scale={1.01} ref={cloudsRef}>
         <meshStandardMaterial
           map={earthCloudTexture}
           blending={2}
