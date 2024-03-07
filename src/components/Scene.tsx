@@ -2,7 +2,6 @@
 import { Canvas } from "@react-three/fiber";
 import { Environment, OrbitControls, Stars } from "@react-three/drei";
 import SolarSystem from "./SolarSystem";
-import SceneControls from "./SceneControls";
 
 export default function Scene() {
   // sky box
@@ -18,7 +17,7 @@ export default function Scene() {
   return (
     <Canvas camera={{ position: [0, 0, 100] }} shadows>
       <OrbitControls minPolarAngle={0.001} maxPolarAngle={Math.PI - 0.001} />
-      <Stars count={5000} radius={50} depth={500} fade />
+      <Stars count={5000} radius={50} depth={800} fade />
       <Environment background files={skyBoxFiles} />
       <SolarSystem />
     </Canvas>

@@ -3,27 +3,60 @@ import * as THREE from "three";
 import { useFrame } from "@react-three/fiber";
 import Earth from "./Earth";
 import Sun from "./Sun";
-import { useRef } from "react";
-import SceneControls from "./SceneControls";
+import { useRef, useState } from "react";
+import { useAtom } from "jotai";
+import { hoverAtom, scenePositionAtom } from "@/store/jotai";
+import Mercury from "./Mercury";
+import Venus from "./Venus";
+import Mars from "./Mars";
+import Jupiter from "./Jupiter";
+import Saturn from "./Saturn";
+import Uranus from "./Uranus";
+import Pluto from "./Pluto";
+import Neptune from "./Neptune";
+import { useCursor } from "@react-three/drei";
+import ModalInfo from "./ModalInfo";
 
 export default function SolarSystem() {
-  const solarRef = useRef<THREE.Group>(null);
+  const solarRef = useRef<THREE.Group<THREE.Object3DEventMap>>(null);
+  const [scenePosition] = useAtom(scenePositionAtom);
 
-  // rotation around the Sun
-  useFrame(({ clock }) => {
+  const groupPosVector = useRef(new THREE.Vector3(0, 0, 0));
+  useFrame(({ camera }) => {
     if (!solarRef.current) return;
-    solarRef.current.rotation.y = clock.getElapsedTime() * 0.01;
+
+    if (groupPosVector.current.distanceTo(scenePosition.position) > 0.02) {
+      groupPosVector.current.lerp(scenePosition.position, 0.02);
+      solarRef.current?.position.set(
+        groupPosVector.current.x,
+        groupPosVector.current.y,
+        groupPosVector.current.z
+      );
+
+      camera.position.lerp(scenePosition.cameraPosition, 0.02);
+    }
   });
 
-  // TEST
-  const earthRef = useRef(null);
+  // hovered state
+  const [hover, setHover] = useAtom(hoverAtom);
+  useCursor(hover.isHover);
 
   return (
     <>
-      <SceneControls earth={earthRef} />
-      <group ref={solarRef}>
+      <group
+        ref={solarRef}
+        onClick={() => setHover({ ...hover, isClicked: true })}
+      >
         <Sun />
-        <Earth ref={earthRef} />
+        <Mercury />
+        <Venus />
+        <Earth />
+        <Mars />
+        <Jupiter />
+        <Saturn />
+        <Uranus />
+        <Neptune />
+        <Pluto />
       </group>
     </>
   );
