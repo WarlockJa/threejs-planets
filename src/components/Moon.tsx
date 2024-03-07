@@ -24,7 +24,10 @@ export default function Moon() {
       scale={0.3}
       castShadow
       receiveShadow
-      onPointerOver={() => setHoverMoon()}
+      onPointerMove={(e) => {
+        e.stopPropagation();
+        setHoverMoon();
+      }}
       onPointerOut={() => setHoverFalse()}
     >
       <meshPhongMaterial map={moonMap} bumpMap={moonBump} bumpScale={0.4} />

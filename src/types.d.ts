@@ -1,4 +1,5 @@
 type TPlanetsLiteral =
+  | "None"
   | "Sun"
   | "Mercury"
   | "Venus"

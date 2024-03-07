@@ -32,7 +32,10 @@ export default function Mars() {
     <group
       position={[180, 0, 6]}
       ref={marsGroup}
-      onPointerOver={() => setHoverMars()}
+      onPointerMove={(e) => {
+        e.stopPropagation();
+        setHoverMars();
+      }}
       onPointerOut={() => setHoverFalse()}
     >
       <Icosahedron args={[1, 12]} scale={0.53} castShadow receiveShadow>

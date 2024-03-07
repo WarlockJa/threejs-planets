@@ -31,7 +31,10 @@ export default function Jupiter() {
     <group
       position={[230, 0, 4]}
       ref={jupiterGroup}
-      onPointerOver={() => setHoverJupiter()}
+      onPointerMove={(e) => {
+        e.stopPropagation();
+        setHoverJupiter();
+      }}
       onPointerOut={() => setHoverFalse()}
     >
       <Icosahedron args={[1, 12]} scale={11.21} castShadow receiveShadow>

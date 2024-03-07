@@ -39,7 +39,10 @@ export default function Uranus() {
     <group
       position={[330, 0, 50]}
       rotation={[0, 0, (97.77 * Math.PI) / 180]}
-      onPointerOver={() => setHoverUranus()}
+      onPointerMove={(e) => {
+        e.stopPropagation();
+        setHoverUranus();
+      }}
       onPointerOut={() => setHoverFalse()}
     >
       <group ref={uranusGroup}>

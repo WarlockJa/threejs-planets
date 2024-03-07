@@ -39,7 +39,10 @@ export default function Pluto() {
       scale={0.12}
       castShadow
       receiveShadow
-      onPointerOver={() => setHoverPluto()}
+      onPointerMove={(e) => {
+        e.stopPropagation();
+        setHoverPluto();
+      }}
       onPointerOut={() => setHoverFalse()}
     >
       <meshPhongMaterial map={plutoMap} bumpMap={plutoBump} bumpScale={0.4} />

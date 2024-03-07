@@ -39,7 +39,10 @@ export default function Saturn() {
     <group
       position={[280, 0, 70]}
       rotation={[0, 0, (26.7 * Math.PI) / 180]}
-      onPointerOver={() => setHoverSaturn()}
+      onPointerMove={(e) => {
+        e.stopPropagation();
+        setHoverSaturn();
+      }}
       onPointerOut={() => setHoverFalse()}
     >
       <group ref={saturnGroup}>

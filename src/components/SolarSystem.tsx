@@ -3,7 +3,7 @@ import * as THREE from "three";
 import { useFrame } from "@react-three/fiber";
 import Earth from "./Earth";
 import Sun from "./Sun";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { useAtom } from "jotai";
 import { hoverAtom, scenePositionAtom } from "@/store/jotai";
 import Mercury from "./Mercury";
@@ -15,7 +15,6 @@ import Uranus from "./Uranus";
 import Pluto from "./Pluto";
 import Neptune from "./Neptune";
 import { useCursor } from "@react-three/drei";
-import ModalInfo from "./ModalInfo";
 
 export default function SolarSystem() {
   const solarRef = useRef<THREE.Group<THREE.Object3DEventMap>>(null);
@@ -45,7 +44,10 @@ export default function SolarSystem() {
     <>
       <group
         ref={solarRef}
-        onClick={() => setHover({ ...hover, isClicked: true })}
+        onClick={(e) => {
+          e.stopPropagation();
+          setHover({ ...hover, isClicked: true });
+        }}
       >
         <Sun />
         <Mercury />

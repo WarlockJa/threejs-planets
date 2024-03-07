@@ -14,7 +14,10 @@ export default function Sun() {
     <Icosahedron
       args={[1, 12]}
       scale={50}
-      onPointerOver={() => setHoverSun()}
+      onPointerMove={(e) => {
+        e.stopPropagation();
+        setHoverSun();
+      }}
       onPointerOut={() => setHoverFalse()}
     >
       <meshBasicMaterial map={sunTexture} />

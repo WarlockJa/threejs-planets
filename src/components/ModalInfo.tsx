@@ -3,6 +3,7 @@ import { hoverAtom, writeOnlyHoverFalseAtom } from "@/store/jotai";
 import { useAtom } from "jotai";
 
 const PLANET_DATA = {
+  None: "",
   Sun: "It's not actually yellow! The Sun emits a broad spectrum of light, and our eyes perceive it as yellow due to how our brains interpret the mix of colors.",
   Mercury:
     'Despite being closest to the Sun, it has a slower rotation period than any other planet, taking 58 Earth days to spin on its axis. This means a single "day" on Mercury is longer than its year (88 Earth days).',
@@ -27,13 +28,17 @@ export default function ModalInfo() {
 
   return (
     <div
-      className={`fixed left-0 top-0 right-0 p-4 bottom-0 bg-slate-900 bg-opacity-70 text-[5em] flex items-center justify-center z-20 ${
-        !hover.isClicked && "hidden"
+      className={`fixed left-0 top-0 right-0 p-4 bottom-0 bg-slate-900 bg-opacity-70  border-8 border-teal-100 rounded-xl flex items-center justify-center z-20 ${
+        hover.isClicked && hover.isHover ? null : "hidden"
       }`}
-      onMouseMove={(e) => e.stopPropagation()}
-      onClick={() => setHoverFalse()}
+      onClick={(e) => {
+        e.stopPropagation();
+        setHoverFalse();
+      }}
     >
-      {PLANET_DATA[hover.planet]}
+      <div className="max-w-lg text-cyan-50 text-3xl text-center">
+        {PLANET_DATA[hover.planet]}
+      </div>
     </div>
   );
 }

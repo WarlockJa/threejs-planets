@@ -61,7 +61,10 @@ export default function Earth() {
     <group position={[150, 0, 0]} rotation={[0, 0, (23.4 * Math.PI) / 180]}>
       <group ref={earthGroup}>
         <group
-          onPointerOver={() => setHoverEarth()}
+          onPointerMove={(e) => {
+            e.stopPropagation();
+            setHoverEarth();
+          }}
           onPointerOut={() => setHoverFalse()}
         >
           <Icosahedron args={[1, 12]} castShadow receiveShadow>

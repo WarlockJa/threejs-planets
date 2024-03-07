@@ -35,7 +35,10 @@ export default function Venus() {
     <group
       position={[123, 0, 8]}
       ref={venusGroup}
-      onPointerOver={() => setHoverVenus()}
+      onPointerMove={(e) => {
+        e.stopPropagation();
+        setHoverVenus();
+      }}
       onPointerOut={() => setHoverFalse()}
     >
       <Icosahedron args={[1, 12]} scale={0.98} castShadow receiveShadow>

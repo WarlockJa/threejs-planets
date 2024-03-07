@@ -79,7 +79,7 @@ export const hoverAtom = atom<{
 }>({
   isHover: false,
   isClicked: false,
-  planet: "Earth",
+  planet: "None",
 });
 export const writeOnlyHoverSunAtom = atom(null, (get, set) => {
   set(hoverAtom, { isHover: true, isClicked: false, planet: "Sun" });

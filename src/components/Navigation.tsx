@@ -1,6 +1,7 @@
 "use client";
 
 import {
+  hoverAtom,
   writeOnlyScenePositionEarthAtom,
   writeOnlyScenePositionJupiterAtom,
   writeOnlyScenePositionMarsAtom,
@@ -39,9 +40,15 @@ export default function Navigation() {
   const [, setScenePositionToPluto] = useAtom(writeOnlyScenePositionPlutoAtom);
   // menu state
   const [menuOpen, setMenuOpen] = useState(false);
+  // checking for loading state
+  const [hover] = useAtom(hoverAtom);
 
   return (
-    <div className="fixed top-0 left-0 z-10">
+    <div
+      className={`fixed top-0 left-0 z-10 ${
+        hover.planet === "None" && "hidden"
+      }`}
+    >
       <button
         className="border transition-colors border-slate-500 text-slate-400 rounded-full px-4 py-2 opacity-75 hover:opacity-100 hover:text-slate-100"
         onClick={() => setMenuOpen(!menuOpen)}
@@ -60,61 +67,91 @@ export default function Navigation() {
       >
         <button
           className="border transition-colors border-slate-500 text-slate-400 rounded-full px-4 py-2 opacity-75 hover:opacity-100 hover:text-slate-100"
-          onClick={() => setScenePositionToSun()}
+          onClick={() => {
+            setMenuOpen(false);
+            setScenePositionToSun();
+          }}
         >
           Sun
         </button>
         <button
           className="border transition-colors border-slate-500 text-slate-400 rounded-full px-4 py-2 opacity-75 hover:opacity-100 hover:text-slate-100"
-          onClick={() => setScenePositionToMercury()}
+          onClick={() => {
+            setMenuOpen(false);
+            setScenePositionToMercury();
+          }}
         >
           Mercury
         </button>
         <button
           className="border transition-colors border-slate-500 text-slate-400 rounded-full px-4 py-2 opacity-75 hover:opacity-100 hover:text-slate-100"
-          onClick={() => setScenePositionToVenus()}
+          onClick={() => {
+            setMenuOpen(false);
+            setScenePositionToVenus();
+          }}
         >
           Venus
         </button>
         <button
           className="border transition-colors border-slate-500 text-slate-400 rounded-full px-4 py-2 opacity-75 hover:opacity-100 hover:text-slate-100"
-          onClick={() => setScenePositionToEarth()}
+          onClick={() => {
+            setMenuOpen(false);
+            setScenePositionToEarth();
+          }}
         >
           Earth
         </button>
         <button
           className="border transition-colors border-slate-500 text-slate-400 rounded-full px-4 py-2 opacity-75 hover:opacity-100 hover:text-slate-100"
-          onClick={() => setScenePositionToMars()}
+          onClick={() => {
+            setMenuOpen(false);
+            setScenePositionToMars();
+          }}
         >
           Mars
         </button>
         <button
           className="border transition-colors border-slate-500 text-slate-400 rounded-full px-4 py-2 opacity-75 hover:opacity-100 hover:text-slate-100"
-          onClick={() => setScenePositionToJupiter()}
+          onClick={() => {
+            setMenuOpen(false);
+            setScenePositionToJupiter();
+          }}
         >
           Jupiter
         </button>
         <button
           className="border transition-colors border-slate-500 text-slate-400 rounded-full px-4 py-2 opacity-75 hover:opacity-100 hover:text-slate-100"
-          onClick={() => setScenePositionToSaturn()}
+          onClick={() => {
+            setMenuOpen(false);
+            setScenePositionToSaturn();
+          }}
         >
           Saturn
         </button>
         <button
           className="border transition-colors border-slate-500 text-slate-400 rounded-full px-4 py-2 opacity-75 hover:opacity-100 hover:text-slate-100"
-          onClick={() => setScenePositionToUranus()}
+          onClick={() => {
+            setMenuOpen(false);
+            setScenePositionToUranus();
+          }}
         >
           Uranus
         </button>
         <button
           className="border transition-colors border-slate-500 text-slate-400 rounded-full px-4 py-2 opacity-75 hover:opacity-100 hover:text-slate-100"
-          onClick={() => setScenePositionToNeptune()}
+          onClick={() => {
+            setMenuOpen(false);
+            setScenePositionToNeptune();
+          }}
         >
           Neptune
         </button>
         <button
           className="border transition-colors border-slate-500 text-slate-400 rounded-full px-4 py-2 opacity-75 hover:opacity-100 hover:text-slate-100"
-          onClick={() => setScenePositionToPluto()}
+          onClick={() => {
+            setMenuOpen(false);
+            setScenePositionToPluto();
+          }}
         >
           Pluto
         </button>

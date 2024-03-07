@@ -31,7 +31,10 @@ export default function Neptune() {
     <group
       position={[380, 0, -22]}
       ref={neptuneGroup}
-      onPointerOver={() => setHoverNeptune()}
+      onPointerMove={(e) => {
+        e.stopPropagation();
+        setHoverNeptune();
+      }}
       onPointerOut={() => setHoverFalse()}
     >
       <Icosahedron args={[1, 12]} scale={3.89} castShadow receiveShadow>

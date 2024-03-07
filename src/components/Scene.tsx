@@ -2,6 +2,8 @@
 import { Canvas } from "@react-three/fiber";
 import { Environment, OrbitControls, Stars } from "@react-three/drei";
 import SolarSystem from "./SolarSystem";
+import { Suspense } from "react";
+import LoadingFigure from "./LoadingFigure";
 
 export default function Scene() {
   // sky box
@@ -16,10 +18,17 @@ export default function Scene() {
 
   return (
     <Canvas camera={{ position: [0, 0, 100] }} shadows>
-      <OrbitControls minPolarAngle={0.001} maxPolarAngle={Math.PI - 0.001} />
-      <Stars count={5000} radius={50} depth={800} fade />
       <Environment background files={skyBoxFiles} />
-      <SolarSystem />
+      <Suspense fallback={<LoadingFigure />}>
+        <Stars count={5000} radius={50} depth={800} fade />
+        <OrbitControls
+          minPolarAngle={0.001}
+          maxPolarAngle={Math.PI - 0.001}
+          enablePan={false}
+        />
+        <SolarSystem />
+      </Suspense>
+      {/* <LoadingFigure /> */}
     </Canvas>
   );
 }

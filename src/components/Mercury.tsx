@@ -27,7 +27,10 @@ export default function Mercury() {
       castShadow
       receiveShadow
       position={[69, 0, 10]}
-      onPointerOver={() => setHoverMercury()}
+      onPointerMove={(e) => {
+        e.stopPropagation();
+        setHoverMercury();
+      }}
       onPointerOut={() => setHoverFalse()}
     >
       <meshPhongMaterial
