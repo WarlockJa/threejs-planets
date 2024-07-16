@@ -43,7 +43,7 @@ export default function Saturn() {
         e.stopPropagation();
         setHoverSaturn();
       }}
-      onPointerOut={() => setHoverFalse()}
+      // onPointerOut={() => setHoverFalse()}
     >
       <group ref={saturnGroup}>
         <Sphere

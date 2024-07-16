@@ -65,7 +65,7 @@ export default function Earth() {
             e.stopPropagation();
             setHoverEarth();
           }}
-          onPointerOut={() => setHoverFalse()}
+          // onPointerOut={() => setHoverFalse()}
         >
           <Icosahedron args={[1, 12]} castShadow receiveShadow>
             <meshPhongMaterial

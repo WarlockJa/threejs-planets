@@ -35,7 +35,7 @@ export default function Neptune() {
         e.stopPropagation();
         setHoverNeptune();
       }}
-      onPointerOut={() => setHoverFalse()}
+      // onPointerOut={() => setHoverFalse()}
     >
       <Icosahedron args={[1, 12]} scale={3.89} castShadow receiveShadow>
         <meshPhongMaterial map={neptuneMap} />

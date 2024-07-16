@@ -28,7 +28,7 @@ export default function Moon() {
         e.stopPropagation();
         setHoverMoon();
       }}
-      onPointerOut={() => setHoverFalse()}
+      // onPointerOut={() => setHoverFalse()}
     >
       <meshPhongMaterial map={moonMap} bumpMap={moonBump} bumpScale={0.4} />
     </Icosahedron>

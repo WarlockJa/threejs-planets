@@ -31,7 +31,7 @@ export default function Mercury() {
         e.stopPropagation();
         setHoverMercury();
       }}
-      onPointerOut={() => setHoverFalse()}
+      // onPointerOut={() => setHoverFalse()}
     >
       <meshPhongMaterial
         map={mercuryMap}

@@ -43,7 +43,7 @@ export default function Uranus() {
         e.stopPropagation();
         setHoverUranus();
       }}
-      onPointerOut={() => setHoverFalse()}
+      // onPointerOut={() => setHoverFalse()}
     >
       <group ref={uranusGroup}>
         <Icosahedron args={[1, 12]} scale={4} castShadow receiveShadow>

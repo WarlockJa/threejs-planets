@@ -36,7 +36,7 @@ export default function Mars() {
         e.stopPropagation();
         setHoverMars();
       }}
-      onPointerOut={() => setHoverFalse()}
+      // onPointerOut={() => setHoverFalse()}
     >
       <Icosahedron args={[1, 12]} scale={0.53} castShadow receiveShadow>
         <meshPhongMaterial map={marsMap} bumpMap={marsBump} bumpScale={0.4} />

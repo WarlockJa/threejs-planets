@@ -35,7 +35,7 @@ export default function Jupiter() {
         e.stopPropagation();
         setHoverJupiter();
       }}
-      onPointerOut={() => setHoverFalse()}
+      // onPointerOut={() => setHoverFalse()}
     >
       <Icosahedron args={[1, 12]} scale={11.21} castShadow receiveShadow>
         <meshPhongMaterial map={jupiterMap} />

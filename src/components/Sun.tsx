@@ -18,7 +18,7 @@ export default function Sun() {
         e.stopPropagation();
         setHoverSun();
       }}
-      onPointerOut={() => setHoverFalse()}
+      // onPointerOut={() => setHoverFalse()}
     >
       <meshBasicMaterial map={sunTexture} />
       <spotLight

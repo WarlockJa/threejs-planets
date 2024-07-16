@@ -43,7 +43,7 @@ export default function Pluto() {
         e.stopPropagation();
         setHoverPluto();
       }}
-      onPointerOut={() => setHoverFalse()}
+      // onPointerOut={() => setHoverFalse()}
     >
       <meshPhongMaterial map={plutoMap} bumpMap={plutoBump} bumpScale={0.4} />
     </Icosahedron>

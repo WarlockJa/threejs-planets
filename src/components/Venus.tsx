@@ -39,7 +39,7 @@ export default function Venus() {
         e.stopPropagation();
         setHoverVenus();
       }}
-      onPointerOut={() => setHoverFalse()}
+      // onPointerOut={() => setHoverFalse()}
     >
       <Icosahedron args={[1, 12]} scale={0.98} castShadow receiveShadow>
         <meshPhongMaterial map={venusMap} bumpMap={venusBump} bumpScale={0.4} />
