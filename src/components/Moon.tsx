@@ -2,7 +2,7 @@ import * as THREE from "three";
 import { useLoader } from "@react-three/fiber";
 import { Icosahedron } from "@react-three/drei";
 import { useAtom } from "jotai";
-import { writeOnlyHoverFalseAtom, writeOnlyHoverMoonAtom } from "@/store/jotai";
+import { writeOnlyHoverMoonAtom } from "@/store/jotai";
 
 export default function Moon() {
   const moonMap = useLoader(
@@ -15,7 +15,6 @@ export default function Moon() {
   );
   // hover detection
   const [, setHoverMoon] = useAtom(writeOnlyHoverMoonAtom);
-  const [, setHoverFalse] = useAtom(writeOnlyHoverFalseAtom);
 
   return (
     <Icosahedron
@@ -28,7 +27,6 @@ export default function Moon() {
         e.stopPropagation();
         setHoverMoon();
       }}
-      // onPointerOut={() => setHoverFalse()}
     >
       <meshPhongMaterial map={moonMap} bumpMap={moonBump} bumpScale={0.4} />
     </Icosahedron>

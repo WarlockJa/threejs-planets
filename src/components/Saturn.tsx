@@ -4,10 +4,7 @@ import { Sphere, Torus } from "@react-three/drei";
 import { useRef } from "react";
 import FresnelShaderSphere from "./FresnelShaderSphere";
 import { useAtom } from "jotai";
-import {
-  writeOnlyHoverFalseAtom,
-  writeOnlyHoverSaturnAtom,
-} from "@/store/jotai";
+import { writeOnlyHoverSaturnAtom } from "@/store/jotai";
 
 export default function Saturn() {
   const saturnGroup = useRef<THREE.Group>(null);
@@ -33,7 +30,6 @@ export default function Saturn() {
 
   // hover detection
   const [, setHoverSaturn] = useAtom(writeOnlyHoverSaturnAtom);
-  const [, setHoverFalse] = useAtom(writeOnlyHoverFalseAtom);
 
   return (
     <group
@@ -43,7 +39,6 @@ export default function Saturn() {
         e.stopPropagation();
         setHoverSaturn();
       }}
-      // onPointerOut={() => setHoverFalse()}
     >
       <group ref={saturnGroup}>
         <Sphere

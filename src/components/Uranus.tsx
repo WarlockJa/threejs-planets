@@ -4,10 +4,7 @@ import { Icosahedron, Torus } from "@react-three/drei";
 import { useRef } from "react";
 import FresnelShader from "./FresnelShader";
 import { useAtom } from "jotai";
-import {
-  writeOnlyHoverFalseAtom,
-  writeOnlyHoverUranusAtom,
-} from "@/store/jotai";
+import { writeOnlyHoverUranusAtom } from "@/store/jotai";
 
 export default function Uranus() {
   const uranusGroup = useRef<THREE.Group>(null);
@@ -33,7 +30,6 @@ export default function Uranus() {
 
   // hover detection
   const [, setHoverUranus] = useAtom(writeOnlyHoverUranusAtom);
-  const [, setHoverFalse] = useAtom(writeOnlyHoverFalseAtom);
 
   return (
     <group
@@ -43,7 +39,6 @@ export default function Uranus() {
         e.stopPropagation();
         setHoverUranus();
       }}
-      // onPointerOut={() => setHoverFalse()}
     >
       <group ref={uranusGroup}>
         <Icosahedron args={[1, 12]} scale={4} castShadow receiveShadow>

@@ -3,10 +3,7 @@ import { useFrame, useLoader } from "@react-three/fiber";
 import { Icosahedron } from "@react-three/drei";
 import { useRef } from "react";
 import { useAtom } from "jotai";
-import {
-  writeOnlyHoverFalseAtom,
-  writeOnlyHoverPlutoAtom,
-} from "@/store/jotai";
+import { writeOnlyHoverPlutoAtom } from "@/store/jotai";
 
 export default function Pluto() {
   const plutoGroup = useRef(null);
@@ -29,7 +26,6 @@ export default function Pluto() {
 
   // hover detection
   const [, setHoverPluto] = useAtom(writeOnlyHoverPlutoAtom);
-  const [, setHoverFalse] = useAtom(writeOnlyHoverFalseAtom);
 
   return (
     <Icosahedron
@@ -43,7 +39,6 @@ export default function Pluto() {
         e.stopPropagation();
         setHoverPluto();
       }}
-      // onPointerOut={() => setHoverFalse()}
     >
       <meshPhongMaterial map={plutoMap} bumpMap={plutoBump} bumpScale={0.4} />
     </Icosahedron>

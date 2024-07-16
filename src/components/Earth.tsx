@@ -6,10 +6,7 @@ import { TextureLoader } from "three";
 import Moon from "./Moon";
 import FresnelShader from "./FresnelShader";
 import { useAtom } from "jotai";
-import {
-  writeOnlyHoverEarthAtom,
-  writeOnlyHoverFalseAtom,
-} from "@/store/jotai";
+import { writeOnlyHoverEarthAtom } from "@/store/jotai";
 
 export default function Earth() {
   const earthGroup = useRef<THREE.Group>(null);
@@ -55,7 +52,6 @@ export default function Earth() {
 
   // hover detection
   const [, setHoverEarth] = useAtom(writeOnlyHoverEarthAtom);
-  const [, setHoverFalse] = useAtom(writeOnlyHoverFalseAtom);
 
   return (
     <group position={[150, 0, 0]} rotation={[0, 0, (23.4 * Math.PI) / 180]}>
@@ -65,7 +61,6 @@ export default function Earth() {
             e.stopPropagation();
             setHoverEarth();
           }}
-          // onPointerOut={() => setHoverFalse()}
         >
           <Icosahedron args={[1, 12]} castShadow receiveShadow>
             <meshPhongMaterial

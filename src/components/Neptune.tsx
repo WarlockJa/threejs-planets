@@ -4,10 +4,7 @@ import { Icosahedron } from "@react-three/drei";
 import FresnelShader from "./FresnelShader";
 import { useRef } from "react";
 import { useAtom } from "jotai";
-import {
-  writeOnlyHoverFalseAtom,
-  writeOnlyHoverNeptuneAtom,
-} from "@/store/jotai";
+import { writeOnlyHoverNeptuneAtom } from "@/store/jotai";
 
 export default function Neptune() {
   const neptuneGroup = useRef<THREE.Group>(null);
@@ -25,7 +22,6 @@ export default function Neptune() {
 
   // hover detection
   const [, setHoverNeptune] = useAtom(writeOnlyHoverNeptuneAtom);
-  const [, setHoverFalse] = useAtom(writeOnlyHoverFalseAtom);
 
   return (
     <group
@@ -35,7 +31,6 @@ export default function Neptune() {
         e.stopPropagation();
         setHoverNeptune();
       }}
-      // onPointerOut={() => setHoverFalse()}
     >
       <Icosahedron args={[1, 12]} scale={3.89} castShadow receiveShadow>
         <meshPhongMaterial map={neptuneMap} />

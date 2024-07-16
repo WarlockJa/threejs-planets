@@ -4,10 +4,7 @@ import { Icosahedron } from "@react-three/drei";
 import FresnelShader from "./FresnelShader";
 import { useRef } from "react";
 import { useAtom } from "jotai";
-import {
-  writeOnlyHoverFalseAtom,
-  writeOnlyHoverJupiterAtom,
-} from "@/store/jotai";
+import { writeOnlyHoverJupiterAtom } from "@/store/jotai";
 
 export default function Jupiter() {
   const jupiterGroup = useRef<THREE.Group>(null);
@@ -25,7 +22,6 @@ export default function Jupiter() {
 
   // hover detection
   const [, setHoverJupiter] = useAtom(writeOnlyHoverJupiterAtom);
-  const [, setHoverFalse] = useAtom(writeOnlyHoverFalseAtom);
 
   return (
     <group
@@ -35,7 +31,6 @@ export default function Jupiter() {
         e.stopPropagation();
         setHoverJupiter();
       }}
-      // onPointerOut={() => setHoverFalse()}
     >
       <Icosahedron args={[1, 12]} scale={11.21} castShadow receiveShadow>
         <meshPhongMaterial map={jupiterMap} />

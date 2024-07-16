@@ -4,7 +4,7 @@ import { Icosahedron } from "@react-three/drei";
 import FresnelShader from "./FresnelShader";
 import { useRef } from "react";
 import { useAtom } from "jotai";
-import { writeOnlyHoverFalseAtom, writeOnlyHoverMarsAtom } from "@/store/jotai";
+import { writeOnlyHoverMarsAtom } from "@/store/jotai";
 
 export default function Mars() {
   const marsGroup = useRef<THREE.Group>(null);
@@ -26,7 +26,6 @@ export default function Mars() {
 
   // hover detection
   const [, setHoverMars] = useAtom(writeOnlyHoverMarsAtom);
-  const [, setHoverFalse] = useAtom(writeOnlyHoverFalseAtom);
 
   return (
     <group
@@ -36,7 +35,6 @@ export default function Mars() {
         e.stopPropagation();
         setHoverMars();
       }}
-      // onPointerOut={() => setHoverFalse()}
     >
       <Icosahedron args={[1, 12]} scale={0.53} castShadow receiveShadow>
         <meshPhongMaterial map={marsMap} bumpMap={marsBump} bumpScale={0.4} />

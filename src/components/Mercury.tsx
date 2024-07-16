@@ -2,10 +2,7 @@ import * as THREE from "three";
 import { useLoader } from "@react-three/fiber";
 import { Icosahedron } from "@react-three/drei";
 import { useAtom } from "jotai";
-import {
-  writeOnlyHoverFalseAtom,
-  writeOnlyHoverMercuryAtom,
-} from "@/store/jotai";
+import { writeOnlyHoverMercuryAtom } from "@/store/jotai";
 
 export default function Mercury() {
   const mercuryMap = useLoader(
@@ -18,7 +15,6 @@ export default function Mercury() {
   );
   // hover detection
   const [, setHoverMercury] = useAtom(writeOnlyHoverMercuryAtom);
-  const [, setHoverFalse] = useAtom(writeOnlyHoverFalseAtom);
 
   return (
     <Icosahedron
@@ -31,7 +27,6 @@ export default function Mercury() {
         e.stopPropagation();
         setHoverMercury();
       }}
-      // onPointerOut={() => setHoverFalse()}
     >
       <meshPhongMaterial
         map={mercuryMap}

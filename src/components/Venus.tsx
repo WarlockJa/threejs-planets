@@ -4,10 +4,7 @@ import { Icosahedron } from "@react-three/drei";
 import FresnelShader from "./FresnelShader";
 import { useRef } from "react";
 import { useAtom } from "jotai";
-import {
-  writeOnlyHoverFalseAtom,
-  writeOnlyHoverVenusAtom,
-} from "@/store/jotai";
+import { writeOnlyHoverVenusAtom } from "@/store/jotai";
 
 export default function Venus() {
   const venusGroup = useRef<THREE.Group>(null);
@@ -29,7 +26,6 @@ export default function Venus() {
 
   // hover detection
   const [, setHoverVenus] = useAtom(writeOnlyHoverVenusAtom);
-  const [, setHoverFalse] = useAtom(writeOnlyHoverFalseAtom);
 
   return (
     <group
@@ -39,7 +35,6 @@ export default function Venus() {
         e.stopPropagation();
         setHoverVenus();
       }}
-      // onPointerOut={() => setHoverFalse()}
     >
       <Icosahedron args={[1, 12]} scale={0.98} castShadow receiveShadow>
         <meshPhongMaterial map={venusMap} bumpMap={venusBump} bumpScale={0.4} />

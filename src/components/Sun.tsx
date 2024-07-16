@@ -2,13 +2,12 @@ import * as THREE from "three";
 import { useLoader } from "@react-three/fiber";
 import { Icosahedron } from "@react-three/drei";
 import { useAtom } from "jotai";
-import { writeOnlyHoverFalseAtom, writeOnlyHoverSunAtom } from "@/store/jotai";
+import { writeOnlyHoverSunAtom } from "@/store/jotai";
 
 export default function Sun() {
   const sunTexture = useLoader(THREE.TextureLoader, "./assets/sunmap.jpg");
   // hover detection
   const [, setHoverSun] = useAtom(writeOnlyHoverSunAtom);
-  const [, setHoverFalse] = useAtom(writeOnlyHoverFalseAtom);
 
   return (
     <Icosahedron
@@ -18,7 +17,6 @@ export default function Sun() {
         e.stopPropagation();
         setHoverSun();
       }}
-      // onPointerOut={() => setHoverFalse()}
     >
       <meshBasicMaterial map={sunTexture} />
       <spotLight
